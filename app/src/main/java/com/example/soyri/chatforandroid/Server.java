@@ -56,6 +56,10 @@ public class Server {
     }
 
 
+
+
+
+
     MainActivity activity;
     ServerSocket serverSocket;
     String message = "";
@@ -133,6 +137,7 @@ public class Server {
     }
 
     public String getIpAddress() {
+        //
         String ip = "";
         try {
             Enumeration<NetworkInterface> enumNetworkInterfaces = NetworkInterface
