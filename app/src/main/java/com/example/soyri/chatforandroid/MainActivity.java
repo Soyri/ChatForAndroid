@@ -1,5 +1,6 @@
 package com.example.soyri.chatforandroid;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView response;
     EditText editTextAddress;
     public TextView msg;
+    public static String EXTRA_CHATWINDOW = "This is meant to be a chat ";
+    String chatMessage;
 
         @Override
         protected void onCreate(Bundle savedInstanceState){
@@ -33,8 +36,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Button connect_button = (Button) findViewById(R.id.button_connect_id);
             connect_button.setOnClickListener(this);
             editTextAddress = (EditText) findViewById(R.id.editTextIPAddress_id);
-            response = (TextView) findViewById(R.id.textViewResponse_id);
+            //response = (TextView) findViewById(R.id.textViewResponse_id);
         }
+
+
+
+
+        /** Called when the user taps the Connect button */
+        public void chatWindow(View v) {
+        // Do something in response to button
+            Intent intent = new Intent(this, DisplayChatWindowActivity.class);
+            //EditText editText = (EditText) findViewById(R.id.editText);
+            //String chatMessage = editText.getText().toString();
+            intent.putExtra(EXTRA_CHATWINDOW, chatMessage);
+            startActivity(intent);
+
+
+        }
+
+
+
 
         @Override
         public void onClick(View v) {
@@ -65,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         //Toast.makeText(getApplicationContext(),"Ok,connect works" ,Toast.LENGTH_SHORT).show();
                         Client myClient = new Client(editTextAddress.getText().toString(), response);
                         myClient.execute();
+                        chatWindow(v);
                         break;
 
                     default:
