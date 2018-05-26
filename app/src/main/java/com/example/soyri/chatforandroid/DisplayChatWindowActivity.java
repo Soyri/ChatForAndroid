@@ -3,10 +3,14 @@ package com.example.soyri.chatforandroid;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 import android.widget.EditText;
 
 public class DisplayChatWindowActivity extends AppCompatActivity {
+    private RecyclerView mMessageRecycler;
+    private MessageListAdapter mMessageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +24,8 @@ public class DisplayChatWindowActivity extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         //TextView textView = findViewById(R.id.textView);
         //textView.setText(message);
+        mMessageRecycler = (RecyclerView) findViewById(R.id.reyclerview_message_list);
+        mMessageAdapter = new MessageListAdapter(this, messageList);
+        mMessageRecycler.setLayoutManager(new LinearLayoutManager(this));
     }
 }

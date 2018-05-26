@@ -1,0 +1,5 @@
+<root>
+    <item name='android.text.format.Formatter java.lang.String formatIpAddress(int)'>
+        <annotation name='android.support.annotation.NonNull' />
+    </item>
+</root>

@@ -1,8 +1,11 @@
 package com.example.soyri.chatforandroid;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -10,6 +13,11 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.widget.TextView;
 import android.widget.EditText;
+
+import java.util.Objects;
+
+import static android.text.format.Formatter.formatIpAddress;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
     Server server;
@@ -20,8 +28,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public TextView msg;
     public static String EXTRA_CHATWINDOW = "This is meant to be a chat ";
     String chatMessage;
+    public String connectedIPAddress = "";
+    User otherPerson = new User ("OtherUser","192.168.0.17");
+    otherPerson.setProfileIP(String "");
 
-        @Override
+    @SuppressLint("WifiManagerLeak")
+    WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+    public String myIP;
+
+    public MainActivity() {
+        myIP = formatIpAddress(wm.getConnectionInfo().getIpAddress());
+    }
+
+
+    @Override
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
 
@@ -36,7 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Button connect_button = (Button) findViewById(R.id.button_connect_id);
             connect_button.setOnClickListener(this);
             editTextAddress = (EditText) findViewById(R.id.editTextIPAddress_id);
-            //response = (TextView) findViewById(R.id.textViewResponse_id);
+           // response = (TextView) findViewById(R.id.textViewResponse_id);
+
         }
 
 
@@ -84,8 +105,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         // do your code
                         // Client connects socket  to a foreign host with the connect button.
                         //Toast.makeText(getApplicationContext(),"Ok,connect works" ,Toast.LENGTH_SHORT).show();
-                        Client myClient = new Client(editTextAddress.getText().toString(), response);
-                        myClient.execute();
+                       // Client myClient = new Client(editTextAddress.getText().toString(), response);
+                       // myClient.execute();
+                        //User otherPerson.setProfileIP(connectedIPAddress) =  "";//editTextAddress.toString();
                         chatWindow(v);
                         break;
 
@@ -97,7 +119,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        server.onDestroy();
+        if (server != null)
+            server.onDestroy();
     }
 
 
