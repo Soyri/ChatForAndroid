@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String EXTRA_CHATWINDOW = "This is meant to be a chat ";
     String chatMessage;
     public String connectedIPAddress = "";
-    User otherPerson = new User ("OtherUser","192.168.0.17");
-    otherPerson.setProfileIP(String "");
+    //User otherPerson = new User ("OtherUser","192.168.0.17");
+    //otherPerson.setProfileIP(String "");
 
     @SuppressLint("WifiManagerLeak")
     WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);

@@ -6,11 +6,13 @@ public class Message {
     String messageBody;
     User sender;
     long createdAt;
+    int position;
     public Message(String messageBody,User sender, long createdAt){
 
          this.messageBody = messageBody;
          this.sender = sender;
          this.createdAt = createdAt;
+         this.position = position;
         }
 
     public String getMessageBody(){
@@ -21,9 +23,11 @@ public class Message {
         return sender;
         }
 
+    public int getPosition(){
+        return position;
+    }
 
-
-    long getCreatedAt(){
+    public long getCreatedAt(){
         Date dateCreatedAt =  Calendar.getInstance().getTime();
         createdAt = dateCreatedAt.getTime();
         return createdAt;
