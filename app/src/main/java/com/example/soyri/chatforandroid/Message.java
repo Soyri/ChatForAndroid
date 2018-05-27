@@ -23,15 +23,21 @@ public class Message {
         return sender;
         }
 
-    public int getPosition(){
+    /*public int getPosition(){
         return position;
-    }
+    }*/
 
-    public long getCreatedAt(){
+    public long setCreatedAt(long createdAt){
         Date dateCreatedAt =  Calendar.getInstance().getTime();
         createdAt = dateCreatedAt.getTime();
         return createdAt;
        }
+
+
+    public long getCreatedAt(){
+        return createdAt;
+    }
+
 }
 
 

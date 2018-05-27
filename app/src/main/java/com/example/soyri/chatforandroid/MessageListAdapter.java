@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Adapter;
 import android.view.LayoutInflater;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -35,7 +37,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     public int getItemViewType(int position) {
         Message message = (Message) mMessageList.get(position);
 
-        if () {
+        if (MainActivity.myIP == "192.168.0.1" ) {
             // If the current user is the sender of the message
             return VIEW_TYPE_MESSAGE_SENT;
         } else {
@@ -65,7 +67,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     // Passes the message object to a ViewHolder so that the contents can be bound to UI.
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        UserMessage message = (UserMessage) mMessageList.get(position);
+        Message message = (Message) mMessageList.get(position);
 
         switch (holder.getItemViewType()) {
             case VIEW_TYPE_MESSAGE_SENT:
@@ -86,11 +88,15 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             timeText = (TextView) itemView.findViewById(R.id.text_message_time);
         }
 
-        void bind(UserMessage message) {
-            messageText.setText(message.getMessage());
+        void bind(Message message) {
+            messageText.setText(message.getMessageBody());
 
             // Format the stored timestamp into a readable String using method.
-            timeText.setText(Utils.formatDateTime(message.getCreatedAt()));
+            Long timeStampAsLong = Long.valueOf(0);
+            String timestamp;
+            timeStampAsLong = message.setCreatedAt(timeStampAsLong);//toString;
+            timestamp = timeStampAsLong.toString();
+            timeText.setText(timestamp);
         }
     }
 
@@ -107,16 +113,22 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             profileImage = (ImageView) itemView.findViewById(R.id.image_message_profile);
         }
 
-        void bind(UserMessage message) {
-            messageText.setText(message.getMessage());
+        void bind(Message message) {
+            messageText.setText(message.getMessageBody());
 
             // Format the stored timestamp into a readable String using method.
-            timeText.setText(Utils.formatDateTime(message.getCreatedAt()));
+            //Date dateCreatedAt =  Calendar.getInstance().getTime();
+            //createdAt = dateCreatedAt.getTime();
+            Long timeStampAsLong = Long.valueOf(0);
+            String timestamp;
+            timeStampAsLong = message.setCreatedAt(timeStampAsLong);//toString;
+            timestamp = timeStampAsLong.toString();
+            timeText.setText(timestamp);
 
             nameText.setText(message.getSender().getNickname());
 
             // Insert the profile image from the URL into the ImageView.
-            Utils.displayRoundImageFromUrl(mContext, message.getSender().getProfileUrl(), profileImage);
+            //Utils.displayRoundImageFromUrl(mContext, message.getSender().getProfileIP(), profileImage);
         }
     }
 }

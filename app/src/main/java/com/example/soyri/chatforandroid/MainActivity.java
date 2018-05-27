@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @SuppressLint("WifiManagerLeak")
     WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-    public String myIP;
+    public static String myIP;
 
     public MainActivity() {
         myIP = formatIpAddress(wm.getConnectionInfo().getIpAddress());
