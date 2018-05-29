@@ -20,11 +20,17 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
 
     private Context mContext;
-    private List <Message> mMessageList;
+    private List<Message> mMessageList;
 
-    public MessageListAdapter(Context context, List <Message> messageList) {
+    public MessageListAdapter(Context context, List<Message> messageList) {
         mContext = context;
         mMessageList = messageList;
+    }
+
+
+    public void add(Message message) {
+        this.mMessageList.add(message);
+        notifyDataSetChanged(); // to render the list we need to notify
     }
 
     @Override
@@ -32,19 +38,12 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         return mMessageList.size();
     }
 
-    // Determines the appropriate ViewType according to the sender of the message.
+
     @Override
     public int getItemViewType(int position) {
         Message message = (Message) mMessageList.get(position);
         MainActivity mainactivity = new MainActivity();
-
-        if (mainactivity.myIP == mainactivity.connectedIPAddress ) {
-            // If the current user is the sender of the message
-            return VIEW_TYPE_MESSAGE_SENT;
-        } else {
-            // If some other user sent the message
-            return VIEW_TYPE_MESSAGE_RECEIVED;
-        }
+        return VIEW_TYPE_MESSAGE_SENT;
     }
 
     // Inflates the appropriate layout according to the ViewType.
@@ -95,7 +94,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             // Format the stored timestamp into a readable String using method.
             Long timeStampAsLong = Long.valueOf(0);
             String timestamp;
-            timeStampAsLong = message.setCreatedAt(timeStampAsLong);//toString;
+            //timeStampAsLong = message.setCreatedAt(timeStampAsLong);//toString;
             timestamp = timeStampAsLong.toString();
             timeText.setText(timestamp);
         }
@@ -120,14 +119,19 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             // Format the stored timestamp into a readable String using method.
             Long timeStampAsLong = Long.valueOf(0);
             String timestamp;
-            timeStampAsLong = message.setCreatedAt(timeStampAsLong);//toString;
+            //timeStampAsLong = message.setCreatedAt(timeStampAsLong);//toString;
             timestamp = timeStampAsLong.toString();
             timeText.setText(timestamp);
+            String nickname;
+            if(message.isMine()) {
+                nickname = "Mine";
+            } else {
+                nickname = "Friend";
+            }
+            nameText.setText(nickname);
 
-            nameText.setText(message.getSender().getNickname());
-
-            // Insert the profile image from the URL into the ImageView.
-            //Utils.displayRoundImageFromUrl(mContext, message.getSender().getProfileIP(), profileImage);
         }
+
+
     }
 }

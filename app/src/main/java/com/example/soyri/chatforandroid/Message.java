@@ -4,35 +4,39 @@ import java.util.Date;
 
 public class Message {
     String messageBody;
-    User sender;
+
+
+    //User sender;
+    boolean mine;
     long createdAt;
     int position;
-    public Message(String messageBody,User sender, long createdAt){
+    public Message(String messageBody,boolean mine , long createdAt){
 
          this.messageBody = messageBody;
-         this.sender = sender;
+         this.mine = mine;
+        //this.sender = sender;
          this.createdAt = createdAt;
          this.position = position;
+
         }
 
     public String getMessageBody(){
          return messageBody;
         }
 
-    public User getSender(){
-        return sender;
-        }
+    //public User getSender(){
+    //    return sender;
+     //   }
 
     /*public int getPosition(){
         return position;
     }*/
 
-    public long setCreatedAt(long createdAt){
-        Date dateCreatedAt =  Calendar.getInstance().getTime();
-        createdAt = dateCreatedAt.getTime();
-        return createdAt;
-       }
 
+
+    public boolean isMine() {
+        return mine;
+    }
 
     public long getCreatedAt(){
         return createdAt;

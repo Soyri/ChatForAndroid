@@ -32,18 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String EXTRA_CHATWINDOW = "This is meant to be a chat ";
     String chatMessage;
     public String connectedIPAddress = "";
-    User otherPerson = new User ("OtherUser","192.168.0.17");
-    String randomstring = "sssa";
-    //otherPerson.setProfileIP("192.168.1.1");
 
-    @SuppressLint("WifiManagerLeak")
 
-    WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-    public  String myIP;
-
-    public MainActivity() {
-        myIP = formatIpAddress(wm.getConnectionInfo().getIpAddress());
-    }
 
 
     @Override
@@ -108,7 +98,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                        // myClient.execute();
                         //User otherPerson.setProfileIP(connectedIPAddress) =  "";//editTextAddress.toString();
                         chatWindow(v);
+
                         connectedIPAddress = editTextAddress.getText().toString();
+
+
                         break;
 
                     default:
