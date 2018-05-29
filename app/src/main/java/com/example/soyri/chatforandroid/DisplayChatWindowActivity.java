@@ -8,9 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 import android.widget.EditText;
 
+import java.util.List;
+
 public class DisplayChatWindowActivity extends AppCompatActivity {
     private RecyclerView mMessageRecycler;
     private MessageListAdapter mMessageAdapter;
+    private List<Message> messageList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

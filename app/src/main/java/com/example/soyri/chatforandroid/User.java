@@ -3,8 +3,8 @@ package com.example.soyri.chatforandroid;
 import java.util.Arrays;
 
 public class User {
-    String nickname;
-    String profileIP;
+    public String nickname;
+    public String profileIP;
 
     public User(String nickname,String profileIP){
 
@@ -22,9 +22,9 @@ public class User {
 
     }
 
-    public String setProfileIP(String setIPAddress){
+    public void setProfileIP(String setIPAddress){
         profileIP = setIPAddress;
-        return profileIP;
+        //return profileIP;
     }
 
 }

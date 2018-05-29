@@ -19,6 +19,9 @@ import java.util.Objects;
 import static android.text.format.Formatter.formatIpAddress;
 
 
+
+
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
     Server server;
     TextView textViewIPAddress;
@@ -29,12 +32,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String EXTRA_CHATWINDOW = "This is meant to be a chat ";
     String chatMessage;
     public String connectedIPAddress = "";
-    //User otherPerson = new User ("OtherUser","192.168.0.17");
-    //otherPerson.setProfileIP(String "");
+    User otherPerson = new User ("OtherUser","192.168.0.17");
+    String randomstring = "sssa";
+    //otherPerson.setProfileIP("192.168.1.1");
 
     @SuppressLint("WifiManagerLeak")
+
     WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-    public static String myIP;
+    public  String myIP;
 
     public MainActivity() {
         myIP = formatIpAddress(wm.getConnectionInfo().getIpAddress());
@@ -92,12 +97,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         //textViewPort.setText(server.getPort());
 
 
-
-
-
-
-
-
                         Toast.makeText(getApplicationContext(),"Ok,listen works" ,Toast.LENGTH_SHORT).show();
                         break;
 
@@ -109,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                        // myClient.execute();
                         //User otherPerson.setProfileIP(connectedIPAddress) =  "";//editTextAddress.toString();
                         chatWindow(v);
+                        connectedIPAddress = editTextAddress.getText().toString();
                         break;
 
                     default:

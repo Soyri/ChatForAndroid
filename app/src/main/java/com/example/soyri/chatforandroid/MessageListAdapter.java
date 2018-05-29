@@ -36,8 +36,9 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         Message message = (Message) mMessageList.get(position);
+        MainActivity mainactivity = new MainActivity();
 
-        if (MainActivity.myIP == "192.168.0.1" ) {
+        if (mainactivity.myIP == mainactivity.connectedIPAddress ) {
             // If the current user is the sender of the message
             return VIEW_TYPE_MESSAGE_SENT;
         } else {
@@ -117,8 +118,6 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             messageText.setText(message.getMessageBody());
 
             // Format the stored timestamp into a readable String using method.
-            //Date dateCreatedAt =  Calendar.getInstance().getTime();
-            //createdAt = dateCreatedAt.getTime();
             Long timeStampAsLong = Long.valueOf(0);
             String timestamp;
             timeStampAsLong = message.setCreatedAt(timeStampAsLong);//toString;
